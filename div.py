@@ -12,10 +12,9 @@ def answer(n):
             if(n%2 == 0):
                 n = n/2
             elif(n!= 3 and n%4 == 3):
-                print("came in ")
                 n = n+1
             else:
-                n = n +1
+                n = n -1
 
 """
 def min_num_steps(n, cur_min, cur_num_step):
