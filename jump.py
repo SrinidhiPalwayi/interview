@@ -1,20 +1,27 @@
-def jumps(nums):
-    jumps = 0
+def canJump( nums):
+    """
+    :type nums: List[int]
+    :rtype: bool
+    """
     index = 0
-    while(index < len(nums) -1):
-        val = nums[index]
-        if(index + nums[index] > len(nums) - 1):
-            return jumps+1
-        max_val = 0
-        next_index = index
-        i = 1
-        while(i <= val and (i + index < len(nums))):
-            if(i+ nums[i+index] > max_val):
-                max_val = i + nums[index+i]
-                next_index = index+i
-            i+=1
-        index = next_index
-        jumps+=1
-    return jumps
+    
+    while(index< len(nums)):
+        if(index +nums[index] >= len(nums)):
+            return True
+        if(nums[index] == 0):
+            return False
+        if( index + nums[index] < len(nums) and nums[index + nums[index]] != 0):
+            index = index + nums[index]
+        else:
+            between = 1
+            while(between < nums[index]):
+                if(index + between < len(nums) and nums[index + between] == 0):
+                    between+=1
+                else:
+                    break
+            if(between == nums[index]):
+                return False
+            index = index + between
+    return True
 
-print(jumps([3,2,1]))
+print(canJump([0,1]))
